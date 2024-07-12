@@ -30,6 +30,7 @@ export default function Hud() {
   const [scope, animate] = useAnimate();
   const [values, setValues] = useState(items);
 
+  //@ts-ignore: Required function for the next updates
   const handleValueChange = useCallback((name: ItemName, value: number) => {
     setValues((currentValues) =>
       currentValues.map((item) =>
@@ -43,12 +44,6 @@ export default function Hud() {
 
   return (
     <div className="absolute -translate-x-1/2 bottom-5 left-1/2">
-      <button
-        className="bg-red-500"
-        onClick={() => handleValueChange("Armor", -10)}
-      >
-        Debug Button
-      </button>
       <div ref={scope} className="flex items-center">
         <AnimatePresence>
           {values.map(({ name, value, Icon }) =>
