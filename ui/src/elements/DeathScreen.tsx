@@ -11,7 +11,7 @@ const variants: Variants = {
 };
 
 export default function DeathScreen() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [time] = useState(300);
 
   useNUIMessage("death:show", () => {
