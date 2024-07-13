@@ -22,7 +22,10 @@ export default function Manfiest() {
   const [isOpened, setIsOpened] = useState(false);
   const [citizens] = useState(23);
 
-  // For Production
+  /*
+    TODO: Integrate with the lua
+    For Production
+  */
   useNUIMessage<string>("manifest:Toggle", (action) => {
     if (action === "show") animate(scope.current, variants.show);
     else animate(scope.current, variants.hide);
