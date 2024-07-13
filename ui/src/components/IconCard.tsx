@@ -33,7 +33,7 @@ export default function IconCard({ icon, progress, ...props }: IconCardProps) {
       <div
         style={{ height: `${progress || 0}%` }}
         className={cn(
-          "absolute bottom-0 left-0 right-0 z-10 w-full transition-all duration-150 bg-blue-600"
+          "absolute bottom-0 left-0 right-0 z-20 w-full transition-all duration-150 bg-blue-600"
         )}
       />
     </motion.div>
