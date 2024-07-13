@@ -1,9 +1,10 @@
 import { motion, Variants } from "framer-motion";
 import { cn } from "@/utils/cn";
 
-interface IconCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface IconCardProps {
   icon: React.ReactNode;
   progress?: number;
+  className?: string;
 }
 
 const variants: Variants = {
@@ -12,11 +13,7 @@ const variants: Variants = {
   exit: { opacity: 0, scale: 0, transition: { duration: 0.2 } },
 };
 
-/*
-  Do not pass other props than className, icon and progress to the div element!
-*/
-
-export default function IconCard({ icon, progress, ...props }: IconCardProps) {
+export default function IconCard({ icon, progress, className }: IconCardProps) {
   return (
     <motion.div
       layout
@@ -25,13 +22,13 @@ export default function IconCard({ icon, progress, ...props }: IconCardProps) {
       animate="animate"
       exit="exit"
       className={cn(
-        "flex relative mx-0.5 bg-opacity-90 overflow-clip justify-center py-2 text-white bg-black px-[30px]",
-        props.className
+        "flex relative bg-opacity-90 overflow-clip justify-center py-2.5 text-white bg-black px-8",
+        className
       )}
     >
       <span className="relative z-50">{icon}</span>
       <div
-        style={{ height: `${progress || 0}%` }}
+        style={{ height: `${progress}%` }}
         className={cn(
           "absolute bottom-0 left-0 right-0 z-20 w-full transition-all duration-150 bg-blue-600"
         )}
