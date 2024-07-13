@@ -10,6 +10,7 @@ import {
   FaMicrophone,
 } from "react-icons/fa6";
 import { cn } from "@/utils/cn";
+import { useNUIMessage } from "@/hooks/useNUIMessage";
 
 type ItemName = "Health" | "Armor" | "Hunger" | "Thirst" | "Talk";
 
@@ -30,6 +31,16 @@ export default function Hud() {
   const [scope, animate] = useAnimate();
   const [values, setValues] = useState(items);
 
+  // For Production
+  useNUIMessage<string>("hud:Toggle", (action) => {
+    if (action === "show") animate(scope.current, variants.show);
+    else animate(scope.current, variants.hide);
+  });
+
+  // For debug only, useNUIMessage instead
+  useWheel("down", () => animate(scope.current, variants.hide));
+  useWheel("up", () => animate(scope.current, variants.show));
+
   //@ts-ignore: Required function for the next updates
   const handleValueChange = useCallback((name: ItemName, value: number) => {
     setValues((currentValues) =>
@@ -38,9 +49,6 @@ export default function Hud() {
       )
     );
   }, []);
-
-  useWheel("down", () => animate(scope.current, variants.hide));
-  useWheel("up", () => animate(scope.current, variants.show));
 
   return (
     <div className="absolute -translate-x-1/2 bottom-5 left-1/2">
