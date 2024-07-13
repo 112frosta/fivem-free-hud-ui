@@ -31,13 +31,16 @@ export default function Hud() {
   const [scope, animate] = useAnimate();
   const [values, setValues] = useState(items);
 
-  // For Production
+  /*
+    TODO: Integrate with the lua
+    For Production
+  */
   useNUIMessage<string>("hud:Toggle", (action) => {
     if (action === "show") animate(scope.current, variants.show);
     else animate(scope.current, variants.hide);
   });
 
-  // For debug only, useNUIMessage instead
+  // For debug only, useNUIMessage insteadk, wont work in FiveM
   useWheel("down", () => animate(scope.current, variants.hide));
   useWheel("up", () => animate(scope.current, variants.show));
 
