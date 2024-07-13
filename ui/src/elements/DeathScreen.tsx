@@ -1,8 +1,8 @@
 import Kbd from "@/components/Kbd";
 import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useNUIMessage } from "@/hooks/useNUIMessage";
 import { useKeyboard } from "@/hooks/useKeyboard";
-import { motion, AnimatePresence, Variants } from "framer-motion";
 import { formatTime } from "@/utils/formatTime";
 
 const variants: Variants = {
