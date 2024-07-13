@@ -31,20 +31,6 @@ export default function Hud() {
   const [scope, animate] = useAnimate();
   const [values, setValues] = useState(items);
 
-  /*
-    TODO: Integrate with the lua
-    For Production
-  */
-  useNUIMessage<string>("hud:Toggle", (action) => {
-    if (action === "show") animate(scope.current, variants.show);
-    else animate(scope.current, variants.hide);
-  });
-
-  // For debug only, useNUIMessage insteadk, wont work in FiveM
-  useWheel("down", () => animate(scope.current, variants.hide));
-  useWheel("up", () => animate(scope.current, variants.show));
-
-  //@ts-ignore: Required function for the next updates
   const handleValueChange = useCallback((name: ItemName, value: number) => {
     setValues((currentValues) =>
       currentValues.map((item) =>
@@ -52,6 +38,21 @@ export default function Hud() {
       )
     );
   }, []);
+
+  // Production only, wont work in Browser
+  useNUIMessage<string>("hud:Toggle", (action) => {
+    if (action === "show") animate(scope.current, variants.show);
+    else animate(scope.current, variants.hide);
+  });
+
+  // Production only, wont work in Browser
+  useNUIMessage<ItemName>("hud:Update", (name) => {
+    handleValueChange(name, 10);
+  });
+
+  // Development only, wont work in FiveM
+  useWheel("down", () => animate(scope.current, variants.hide));
+  useWheel("up", () => animate(scope.current, variants.show));
 
   return (
     <div className="absolute -translate-x-1/2 bottom-5 left-1/2">
