@@ -14,8 +14,8 @@
 @layer components {
     .gradient-background {
         background: 
-          radial-gradient(circle at top left, rgba(136, 8, 8, 0.3), transparent 40%),
-          radial-gradient(circle at bottom right, rgba(136, 8, 8, 0.3), transparent 40%);
+          radial-gradient(circle at top left, rgba(136, 8, 8, 0.3), transparent 50%),
+          radial-gradient(circle at bottom right, rgba(136, 8, 8, 0.3), transparent 50%);
         position: absolute;
         width: 100%;
         height: 100%;
