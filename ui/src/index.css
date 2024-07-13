@@ -7,5 +7,17 @@
     body {
         font-family: 'Inter', sans-serif;
         overflow-y: hidden;
+        background: url("/dev-image.png") no-repeat center center fixed;
     }
+}
+
+@layer components {
+    .gradient-background {
+        background: 
+          radial-gradient(circle at top left, rgba(136, 8, 8, 0.3), transparent 20%),
+          radial-gradient(circle at bottom right, rgba(136, 8, 8, 0.3), transparent 20%);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
 }
