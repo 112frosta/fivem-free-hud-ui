@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useKeyboard } from "@/hooks/useKeyboard";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { motion, useAnimate, Variants } from "framer-motion";
+import { useNUIMessage } from "@/hooks/useNUIMessage";
 
 const variants: Variants = {
   hide: {
@@ -21,6 +22,14 @@ export default function Manfiest() {
   const [isOpened, setIsOpened] = useState(false);
   const [citizens] = useState(23);
 
+  // For Production
+  useNUIMessage<string>("manifest:Toggle", (action) => {
+    if (action === "show") animate(scope.current, variants.show);
+    else animate(scope.current, variants.hide);
+    setIsOpened((prev) => !prev);
+  });
+
+  // For debug only, useNUIMessage instead
   useKeyboard("z", () => {
     if (isOpened) animate(scope.current, variants.hide);
     else animate(scope.current, variants.show);
@@ -33,7 +42,7 @@ export default function Manfiest() {
         ref={scope}
         variants={variants}
         initial="hide"
-        className="flex items-center justify-between gap-12 px-5 py-3.5 bg-black rounded-md bg-opacity-90 text-content"
+        className="flex items-center justify-between gap-12 px-5 py-4 bg-black rounded-md bg-opacity-90 text-content"
       >
         <div className="flex items-center gap-2.5 font-semibold">
           <FaEarthAmericas className="size-4" />
