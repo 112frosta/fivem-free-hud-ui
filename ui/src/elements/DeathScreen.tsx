@@ -3,7 +3,7 @@ import { useState } from "react";
 import { formatTime } from "@/utils/formatTime";
 
 export default function DeathScreen() {
-  const [time, setTime] = useState(300);
+  const [time] = useState(300);
 
   return (
     <div className="flex items-end justify-center gradient-background">
